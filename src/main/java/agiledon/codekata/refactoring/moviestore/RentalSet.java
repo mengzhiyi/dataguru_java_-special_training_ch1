@@ -17,7 +17,7 @@ public class RentalSet {
 		String result = "";
 		
         for (Rental each : rentals) {
-            double thisAmount = each.determineAmounts();
+            double thisAmount = each.acount();
 
             // add frequent renter points
             frequentRenterPoints++;
@@ -27,7 +27,7 @@ public class RentalSet {
                 frequentRenterPoints++;
             
             //show figures
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
+            result += "\t" + each.getMovieTitle() + "\t" + String.valueOf(thisAmount) + "\n";
             totalAmount += thisAmount;
         }
 		

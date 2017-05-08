@@ -18,15 +18,15 @@ public class CustomerTest {
 
     @Before
     public void setUp() throws Exception {
-        regularMovie = new Movie(REGULAR_MOVIE_NAME, PriceCode.REGULAR);
+        regularMovie = new RegularMovie(REGULAR_MOVIE_NAME);
         customer = new Customer(CUSOMTER_NAME);
-        newRleaseMovie = new Movie(NEW_RELEASE_MOVIE_NAME, PriceCode.NEW_RELEASE);
-        childrenMovie = new Movie(CHILDREN_MOVIE, PriceCode.CHILDREN);
+        newRleaseMovie = new NewReleaseMovie(NEW_RELEASE_MOVIE_NAME);
+        childrenMovie = new ChildrenMovie(CHILDREN_MOVIE);
     }
 
     @Test
     public void should_statement_for_regular_movie_and_rental_days_less_than_or_equal_to_2() {
-        Rental rental = new Rental(regularMovie, 2);
+        Rental rental = new RegularRental(regularMovie, 2);
         Customer customer = new Customer(CUSOMTER_NAME);
         customer.addRental(rental);
 
@@ -37,7 +37,7 @@ public class CustomerTest {
 
     @Test
     public void should_statement_for_regular_movie_and_rental_days_greater_than_2() {
-        Rental rental = new Rental(regularMovie, 3);
+        Rental rental = new RegularRental(regularMovie, 3);
         customer.addRental(rental);
 
         double expectedTotalAmount = 3.5;
@@ -47,7 +47,7 @@ public class CustomerTest {
 
     @Test
     public void should_statement_for_new_release_movie_and_rental_days_less_than_or_equal_to_1() {
-        Rental rental = new Rental(newRleaseMovie, 1);
+        Rental rental = new NewReleaseRental(newRleaseMovie, 1);
         customer.addRental(rental);
 
         double expectedTotalAmount = 3.0;
@@ -57,7 +57,7 @@ public class CustomerTest {
 
     @Test
     public void should_statement_for_new_release_movie_and_rental_days_greater_than_1() {
-        Rental rental = new Rental(newRleaseMovie, 3);
+        Rental rental = new NewReleaseRental(newRleaseMovie, 3);
         customer.addRental(rental);
 
         double expectedTotalAmount = 9.0;
@@ -67,7 +67,7 @@ public class CustomerTest {
 
     @Test
     public void should_statement_for_children_movie_and_rental_days_less_than_or_equal_to_3() {
-        Rental rental = new Rental(childrenMovie, 3);
+        Rental rental = new ChildrenRental(childrenMovie, 3);
         customer.addRental(rental);
 
         double expectedTotalAmount = 1.5;
@@ -77,7 +77,7 @@ public class CustomerTest {
 
     @Test
     public void should_statement_for_children_movie_and_rental_days_greater_than_3() {
-        Rental rental = new Rental(childrenMovie, 4);
+        Rental rental = new ChildrenRental(childrenMovie, 4);
         customer.addRental(rental);
 
         double expectedTotalAmount = 3.0;
@@ -87,9 +87,9 @@ public class CustomerTest {
 
     @Test
     public void should_statement_for_all_kinds_of_movie() {
-        Rental rentalForRegularMovie = new Rental(regularMovie, 3);
-        Rental rentalForNewReleaseMovie = new Rental(newRleaseMovie, 3);
-        Rental rentalForChildrenMovie = new Rental(childrenMovie, 3);
+        Rental rentalForRegularMovie = new RegularRental(regularMovie, 3);
+        Rental rentalForNewReleaseMovie = new NewReleaseRental(newRleaseMovie, 3);
+        Rental rentalForChildrenMovie = new ChildrenRental(childrenMovie, 3);
         customer.addRental(rentalForRegularMovie);
         customer.addRental(rentalForNewReleaseMovie);
         customer.addRental(rentalForChildrenMovie);
